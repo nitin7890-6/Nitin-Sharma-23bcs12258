@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <title>Student Registration Form with HTML5 Validation</title>
+  <link rel="stylesheet" href="style.css" />
+
+</head>
+<body>
+  <h2>Student Registration Form</h2>
+  <form>
+    <!-- Name field: required text input -->
+    <label for="name">Name:</label><br />
+    <input
+      type="text"
+      id="name"
+      name="name"
+      placeholder="Enter your full name"
+      required
+      minlength="3"
+    />
+    <br /><br />
+
+    <!-- Email field: required, must be a valid email -->
+    <label for="email">Email:</label><br />
+    <input
+      type="email"
+      id="email"
+      name="email"
+      placeholder="example@example.com"
+      required
+    />
+    <br /><br />
+
+    <!-- Age field: required number input, min 1, max 120 -->
+    <label for="age">Age:</label><br />
+    <input
+      type="number"
+      id="age"
+      name="age"
+      placeholder="Enter your age"
+      required
+      min="1"
+      max="120"
+    />
+    <br /><br />
+
+    <button type="submit">Register</button>
+  </form>
+</body>
+</html>
