@@ -1,0 +1,100 @@
+/* Reset some default */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f0f4f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.container {
+  background: white;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+.balance-card {
+  background: #4a90e2;
+  color: white;
+  padding: 30px 20px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+}
+
+.balance-card h2 {
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+}
+
+.balance-amount {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  flex: 1 1 120px;
+  padding: 15px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: white;
+}
+
+.deposit {
+  background-color: #28a745; /* green */
+}
+
+.deposit:hover {
+  background-color: #218838;
+}
+
+.withdraw {
+  background-color: #dc3545; /* red */
+}
+
+.withdraw:hover {
+  background-color: #c82333;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .container {
+    padding: 20px;
+  }
+
+  .balance-card h2 {
+    font-size: 1.25rem;
+  }
+
+  .balance-amount {
+    font-size: 2rem;
+  }
+
+  .btn {
+    flex-basis: 100%;
+  }
+}
