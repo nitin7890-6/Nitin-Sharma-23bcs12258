@@ -1,0 +1,73 @@
+import React from "react";
+
+// ✅ Reusable ProductCard component
+function ProductCard({ name, price, category, image }) {
+  return (
+    <div className="bg-white shadow-md rounded-2xl overflow-hidden hover:shadow-lg transition p-4 flex flex-col items-center text-center">
+      <img
+        src={image}
+        alt={name}
+        className="w-32 h-32 object-contain mb-4"
+      />
+      <h3 className="text-lg font-semibold">{name}</h3>
+      <p className="text-gray-500 text-sm mb-2">{category}</p>
+      <p className="text-blue-600 font-bold text-lg">${price}</p>
+      <button className="mt-3 bg-blue-600 text-white px-4 py-2 rounded-xl hover:bg-blue-700 transition">
+        Add to Cart
+      </button>
+    </div>
+  );
+}
+
+// ✅ Parent Component
+export default function ProductList() {
+  const products = [
+    {
+      id: 1,
+      name: "Apple iPhone 15",
+      price: 999,
+      category: "Electronics",
+      image: "https://via.placeholder.com/150?text=iPhone+15",
+    },
+    {
+      id: 2,
+      name: "Nike Running Shoes",
+      price: 129,
+      category: "Fashion",
+      image: "https://via.placeholder.com/150?text=Nike+Shoes",
+    },
+    {
+      id: 3,
+      name: "Wooden Study Table",
+      price: 249,
+      category: "Furniture",
+      image: "https://via.placeholder.com/150?text=Study+Table",
+    },
+    {
+      id: 4,
+      name: "Sony Headphones",
+      price: 199,
+      category: "Electronics",
+      image: "https://via.placeholder.com/150?text=Headphones",
+    },
+  ];
+
+  return (
+    <div className="min-h-screen bg-gray-50 py-10 flex flex-col items-center">
+      <h1 className="text-3xl font-bold mb-8 text-gray-800">
+        🛍️ Product Showcase
+      </h1>
+      <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 px-6 max-w-6xl">
+        {products.map((p) => (
+          <ProductCard
+            key={p.id}
+            name={p.name}
+            price={p.price}
+            category={p.category}
+            image={p.image}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
