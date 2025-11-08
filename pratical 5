@@ -1,0 +1,55 @@
+// Base class: Person
+class Person {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  introduce() {
+    return `Hi, I'm ${this.name}, and I'm ${this.age} years old.`;
+  }
+}
+
+// Subclass: Student
+class Student extends Person {
+  constructor(name, age, grade, studentId) {
+    super(name, age);
+    this.grade = grade;
+    this.studentId = studentId;
+  }
+
+  study(subject) {
+    return `${this.name} is studying ${subject}.`;
+  }
+
+  introduce() {
+    return `${super.introduce()} I'm a student in grade ${this.grade}.`;
+  }
+}
+
+// Subclass: Teacher
+class Teacher extends Person {
+  constructor(name, age, subject, employeeId) {
+    super(name, age);
+    this.subject = subject;
+    this.employeeId = employeeId;
+  }
+
+  teach(topic) {
+    return `${this.name} is teaching ${topic} in ${this.subject}.`;
+  }
+
+  introduce() {
+    return `${super.introduce()} I teach ${this.subject}.`;
+  }
+}
+
+// Example usage
+const student = new Student("Alice", 16, "10th", "S123");
+const teacher = new Teacher("Mr. Smith", 40, "Mathematics", "T001");
+
+console.log(student.introduce()); // Hi, I'm Alice, and I'm 16 years old. I'm a student in grade 10th.
+console.log(student.study("Physics")); // Alice is studying Physics.
+
+console.log(teacher.introduce()); // Hi, I'm Mr. Smith, and I'm 40 years old. I teach Mathematics.
+console.log(teacher.teach("Algebra")); // Mr. Smith is teaching Algebra in Mathematics.
