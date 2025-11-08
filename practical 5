@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dynamic Product Filter</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9fafb;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px;
+    }
+
+    h1 {
+      color: #222;
+      margin-bottom: 20px;
+    }
+
+    .filter-section {
+      margin-bottom: 20px;
+    }
+
+    select {
+      padding: 8px 12px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      outline: none;
+    }
+
+    .product-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      width: 80%;
+      max-width: 800px;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 16px;
+      transition: transform 0.2s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .product-name {
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+
+    .product-category {
+      color: #666;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🛍️ Product Filter</h1>
+
+  <div class="filter-section">
+    <label for="categorySelect"><strong>Filter by Category:</strong></label>
+    <select id="categorySelect">
+      <option value="all">All</option>
+    </select>
+  </div>
+
+  <div class="product-list" id="productList"></div>
+
+  <script>
+    // Product data
+    const products = [
+      { name: "Apple iPhone 15", category: "Electronics" },
+      { name: "Nike Running Shoes", category: "Fashion" },
+      { name: "Samsung Galaxy S23", category: "Electronics" },
+      { name: "Wooden Study Table", category: "Furniture" },
+      { name: "Levi’s Denim Jacket", category: "Fashion" },
+      { name: "Office Chair", category: "Furniture" },
+      { name: "Sony Headphones", category: "Electronics" },
+    ];
+
+    const productList = document.getElementById("productList");
+    const categorySelect = document.getElementById("categorySelect");
+
+    // Dynamically populate dropdown with unique categories
+    const categories = ["all", ...new Set(products.map(p => p.category))];
+    categories.forEach(cat => {
+      const option = document.createElement("option");
+      option.value = cat;
+      option.textContent = cat;
+      categorySelect.appendChild(option);
+    });
+
+    // Function to render products
+    function renderProducts(filterCategory = "all") {
+      productList.innerHTML = ""; // clear existing
+      const filtered = filterCategory === "all"
+        ? products
+        : products.filter(p => p.category === filterCategory);
+
+      if (filtered.length === 0) {
+        productList.innerHTML = `<p style="grid-column: 1 / -1; text-align: center; color: #777;">No products found.</p>`;
+        return;
+      }
+
+      filtered.forEach(product => {
+        const card = document.createElement("div");
+        card.className = "product-card";
+        card.innerHTML = `
+          <div class="product-name">${product.name}</div>
+          <div class="product-category">${product.category}</div>
+        `;
+        productList.appendChild(card);
+      });
+    }
+
+    // Listen for dropdown change
+    categorySelect.addEventListener("change", (e) => {
+      renderProducts(e.target.value);
+    });
+
+    // Initial render
+    renderProducts();
+  </script>
+</body>
+</html>
